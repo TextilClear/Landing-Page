@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Panel | TextilClear
+    </title>
+
+    <link rel="stylesheet"
+          href="styles.css">
+
+</head>
+
+
+<body class="dashboard-page">
+
+    <header class="dashboard-header">
+
+        <a href="index.html"
+           class="brand">
+
+            Textil<span>Clear</span>
+
+        </a>
+
+        <div class="user-menu">
+
+            <span id="welcomeUser">
+                Usuario
+            </span>
+
+            <button
+                id="logoutButton"
+                class="button button-outline button-small">
+
+                Cerrar sesión
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <section class="dashboard-welcome">
+
+            <span
+                id="roleBadge"
+                class="eyebrow dashboard-role">
+                USUARIO
+            </span>
+
+            <h1 id="dashboardTitle">
+                Bienvenido
+            </h1>
+
+            <p id="dashboardDescription">
+                Gestiona tu cuenta.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================
+             CONFECCIONISTA
+        ====================================== -->
+
+        <section
+            id="sellerPanel"
+            class="dashboard-section hidden">
+
+            <div class="dashboard-title">
+
+                <h2>
+                    Panel del confeccionista
+                </h2>
+
+                <p>
+                    Publica y administra tus lotes.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Publicar nuevo lote
+                </h3>
+
+
+                <form id="lotForm">
+
+                    <div class="dashboard-form-grid">
+
+                        <div class="input-group">
+
+                            <label>
+                                Nombre del lote
+                            </label>
+
+                            <input
+                                id="lotName"
+                                type="text"
+                                placeholder="Ej. Tela denim"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Tipo
+                            </label>
+
+                            <select
+                                id="lotType"
+                                required>
+
+                                <option value="">
+                                    Selecciona
+                                </option>
+
+                                <option>
+                                    Tela
+                                </option>
+
+                                <option>
+                                    Polo
+                                </option>
+
+                                <option>
+                                    Pantalón
+                                </option>
+
+                                <option>
+                                    Casaca
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Cantidad
+                            </label>
+
+                            <input
+                                id="lotQuantity"
+                                type="number"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Precio
+                            </label>
+
+                            <input
+                                id="lotPrice"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label>
+                                Ubicación
+                            </label>
+
+                            <input
+                                id="lotLocation"
+                                type="text"
+                                placeholder="Lima"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="lotDescription"
+                            rows="4"
+                            required>
+                        </textarea>
+
+                    </div>
+
+
+                    <button
+                        class="button button-primary"
+                        type="submit">
+
+                        Publicar lote
+
+                    </button>
+
+
+                    <p
+                        id="lotMessage"
+                        class="form-feedback">
+                    </p>
+
+                </form>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Mis lotes
+                </h3>
+
+                <div
+                    id="sellerLots"
+                    class="lot-grid">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             COMPRADOR
+        ====================================== -->
+
+        <section
+            id="buyerPanel"
+            class="dashboard-section hidden">
+
+            <div class="dashboard-title">
+
+                <h2>
+                    Panel del comprador
+                </h2>
+
+                <p>
+                    Encuentra lotes disponibles.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <input
+                    type="text"
+                    id="searchLot"
+                    class="search-input"
+                    placeholder="Buscar tela, polo, pantalón...">
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Lotes disponibles
+                </h3>
+
+                <div
+                    id="buyerLots"
+                    class="lot-grid">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>
