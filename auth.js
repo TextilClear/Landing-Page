@@ -799,3 +799,107 @@ function verLote(
     );
 
 }
+
+
+
+/* =====================================================
+   DASHBOARD - DATOS DE USUARIO Y ESTADÍSTICAS
+===================================================== */
+
+function updateStats() {
+
+    const stored =
+        localStorage.getItem("textilclear_usuario");
+
+    if (!stored || !document.getElementById("statGrid")) {
+
+        return;
+
+    }
+
+    const usuario = JSON.parse(stored);
+
+    const lotes = getLots();
+
+    const unidades = lotes.reduce(
+        (total, l) => total + (Number(l.cantidad) || 0), 0
+    );
+
+    const valor = lotes.reduce(
+        (total, l) => total + (Number(l.precio) || 0), 0
+    );
+
+    const promedio =
+        lotes.length ? valor / lotes.length : 0;
+
+    const categorias =
+        new Set(lotes.map((l) => l.tipo)).size;
+
+    const dinero = (n) =>
+        "S/ " + n.toLocaleString("es-PE", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    const numero = (n) => n.toLocaleString("es-PE");
+
+    const stats =
+        usuario.rol === "comprador"
+            ? [
+                ["Lotes disponibles", numero(lotes.length)],
+                ["Unidades disponibles", numero(unidades)],
+                ["Precio promedio", dinero(promedio)],
+                ["Categorías", numero(categorias)]
+            ]
+            : [
+                ["Lotes publicados", numero(lotes.length)],
+                ["Unidades en venta", numero(unidades)],
+                ["Valor publicado", dinero(valor)],
+                ["Precio promedio", dinero(promedio)]
+            ];
+
+    stats.forEach(function (stat, i) {
+
+        document.getElementById("statLabel" + i).textContent = stat[0];
+        document.getElementById("statValue" + i).textContent = stat[1];
+
+    });
+
+    const sellerCount = document.getElementById("sellerCount");
+    const buyerCount = document.getElementById("buyerCount");
+
+    if (sellerCount) sellerCount.textContent = lotes.length;
+    if (buyerCount) buyerCount.textContent = lotes.length;
+
+}
+
+
+if (dashboard) {
+
+    const sesion =
+        localStorage.getItem("textilclear_usuario");
+
+    if (sesion) {
+
+        const u = JSON.parse(sesion);
+
+        document.body.dataset.role = u.rol;
+
+        const initial = document.getElementById("userInitial");
+        const email = document.getElementById("userEmail");
+
+        if (initial) initial.textContent = (u.nombre || "U").charAt(0);
+        if (email) email.textContent = u.email || "Cuenta activa";
+
+        updateStats();
+
+    }
+
+}
+
+
+if (lotForm) {
+
+    lotForm.addEventListener("submit", updateStats);
+
+}
