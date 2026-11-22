@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel | TextilClear</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- BARRA SUPERIOR -->
+    <header class="dashboard-header">
+
+        <a href="index.html" class="brand">
+            Textil<span>Clear</span>
+        </a>
+
+        <div class="dashboard-header-right">
+
+            <div class="header-user">
+                <div class="user-avatar">👤</div>
+
+                <div class="user-info">
+                    <strong id="welcomeUser">Usuario</strong>
+                    <small>Cuenta activa</small>
+                </div>
+            </div>
+
+            <button id="logoutButton" class="logout-button">
+                <span>↪</span> Cerrar sesión
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- BIENVENIDA -->
+        <section class="dashboard-welcome">
+
+            <div class="welcome-content">
+
+                <span id="roleBadge" class="welcome-badge">
+                    USUARIO
+                </span>
+
+                <h1 id="dashboardTitle">
+                    Bienvenido
+                </h1>
+
+                <p id="dashboardDescription">
+                    Gestiona tu actividad en TextilClear.
+                </p>
+
+            </div>
+
+            <div class="welcome-decoration">
+                <div class="welcome-circle">🧵</div>
+                <span>TEXTILCLEAR</span>
+                <small>Conectando oportunidades textiles</small>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANEL CONFECCIONISTA
+        ====================================== -->
+
+        <section id="sellerPanel" class="dashboard-section hidden">
+
+            <div class="section-heading-dashboard">
+
+                <div>
+                    <span class="section-eyebrow">MI NEGOCIO</span>
+
+                    <h2>Panel del confeccionista</h2>
+
+                    <p>
+                        Administra tus productos y ofrece tus lotes textiles.
+                    </p>
+                </div>
+
+                <div class="section-icon">🏭</div>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon orange-icon">＋</div>
+
+                    <div>
+                        <h3>Publicar nuevo lote</h3>
+                        <p>Completa los datos de tu producto para ofrecerlo.</p>
+                    </div>
+
+                </div>
+
+
+                <form id="lotForm">
+
+                    <div class="form-section-label">
+                        INFORMACIÓN DEL PRODUCTO
+                    </div>
+
+                    <div class="dashboard-form-grid">
+
+                        <div class="input-group">
+                            <label for="lotName">Nombre del lote</label>
+
+                            <input
+                                id="lotName"
+                                type="text"
+                                placeholder="Ej. Tela denim azul"
+                                required>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label for="lotType">Tipo de producto</label>
+
+                            <select id="lotType" required>
+
+                                <option value="">Selecciona una categoría</option>
+                                <option>Tela</option>
+                                <option>Polo</option>
+                                <option>Pantalón</option>
+                                <option>Casaca</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label for="lotQuantity">Cantidad de unidades</label>
+
+                            <input
+                                id="lotQuantity"
+                                type="number"
+                                min="1"
+                                placeholder="Ej. 500"
+                                required>
+                        </div>
+
+
+                        <div class="input-group">
+                            <label for="lotPrice">Precio (S/)</label>
+
+                            <input
+                                id="lotPrice"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                placeholder="Ej. 250.00"
+                                required>
+                        </div>
+
+
+                        <div class="input-group full-width">
+                            <label for="lotLocation">Ubicación</label>
+
+                            <input
+                                id="lotLocation"
+                                type="text"
+                                placeholder="Ej. Villa El Salvador, Lima"
+                                required>
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group description-group">
+
+                        <label for="lotDescription">
+                            Descripción del producto
+                        </label>
+
+                        <textarea
+                            id="lotDescription"
+                            rows="4"
+                            placeholder="Describe las características, calidad y condiciones del lote..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-footer">
+
+                        <p class="form-hint">
+                            Los campos marcados son obligatorios.
+                        </p>
+
+                        <button
+                            class="button button-primary publish-button"
+                            type="submit">
+
+                            ＋ Publicar lote
+
+                        </button>
+
+                    </div>
+
+                    <p id="lotMessage" class="form-feedback"></p>
+
+                </form>
+
+            </div>
+
+
+            <!-- MIS LOTES -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon blue-icon">📦</div>
+
+                    <div>
+                        <h3>Mis lotes publicados</h3>
+                        <p>Consulta los productos que has registrado.</p>
+                    </div>
+
+                </div>
+
+                <div id="sellerLots" class="lot-grid"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PANEL COMPRADOR
+        ====================================== -->
+
+        <section id="buyerPanel" class="dashboard-section hidden">
+
+            <div class="section-heading-dashboard">
+
+                <div>
+                    <span class="section-eyebrow">EXPLORAR PRODUCTOS</span>
+
+                    <h2>Panel del comprador</h2>
+
+                    <p>
+                        Encuentra oportunidades y lotes textiles disponibles.
+                    </p>
+                </div>
+
+                <div class="section-icon">🛍️</div>
+
+            </div>
+
+
+            <!-- BUSCADOR -->
+            <div class="dashboard-card search-card">
+
+                <div class="search-heading">
+                    <div>
+                        <h3>¿Qué estás buscando?</h3>
+                        <p>Busca productos por nombre, categoría o ubicación.</p>
+                    </div>
+                </div>
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">⌕</span>
+
+                    <input
+                        type="text"
+                        id="searchLot"
+                        class="search-input"
+                        placeholder="Buscar tela, polo, pantalón...">
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCTOS -->
+            <div class="dashboard-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon orange-icon">🧵</div>
+
+                    <div>
+                        <h3>Lotes disponibles</h3>
+                        <p>Explora los productos publicados en TextilClear.</p>
+                    </div>
+
+                </div>
+
+                <div id="buyerLots" class="lot-grid"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <strong>Textil<span>Clear</span></strong>
+
+        <p>Conectando confeccionistas y compradores textiles.</p>
+
+        <small>© 2026 TextilClear. Todos los derechos reservados.</small>
+
+    </footer>
+
+
+    <script src="auth.js"></script>
+
+</body>
+</html>
